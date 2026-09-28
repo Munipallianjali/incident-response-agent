@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "/api";
 
 function esc(v=""){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
 function badge(v){return `<span class="badge ${v.toLowerCase()}">${esc(v)}</span>`}
