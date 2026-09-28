@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incident Response Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><span class="shield">🛡️</span><div><b>IR Agent</b><small>Security Operations</small></div></div>
+      <nav>
+        <a class="active">Dashboard</a>
+        <a href="#incidents">Incidents</a>
+        <a href="#analyzer">AI Analyzer</a>
+        <a href="#response">Response Center</a>
+      </nav>
+      <div class="side-note"><b>Prototype mode</b><p>Sample telemetry is used. Response actions are recommendations and are not executed automatically.</p></div>
+    </aside>
+
+    <main class="main">
+      <header>
+        <div><div class="eyebrow">SECURITY OPERATIONS CENTER</div><h1>Incident Response Agent</h1><p>Detect, analyze and prioritize security incidents.</p></div>
+        <button class="refresh" onclick="loadIncidents()">↻ Refresh</button>
+      </header>
+
+      <section class="cards">
+        <div class="stat"><span>🔴 Critical</span><strong id="critical">0</strong><small>Requires immediate review</small></div>
+        <div class="stat"><span>🟠 High</span><strong id="high">0</strong><small>Priority investigation</small></div>
+        <div class="stat"><span>🟡 Medium</span><strong id="medium">0</strong><small>Monitor and investigate</small></div>
+        <div class="stat"><span>🟢 Resolved</span><strong id="resolved">0</strong><small>Closed incidents</small></div>
+      </section>
+
+      <section class="panel" id="incidents">
+        <div class="panel-head"><div><h2>Recent Incidents</h2><p>Live data from the Node.js API</p></div><button onclick="scrollToAnalyzer()">+ Analyze Event</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Incident</th><th>Type</th><th>Severity</th><th>Status</th><th>Source</th><th>Time</th></tr></thead><tbody id="incidentRows"></tbody></table></div>
+      </section>
+
+      <section class="grid" id="analyzer">
+        <div class="panel">
+          <div class="panel-head"><div><h2>AI Incident Analyzer</h2><p>Paste an event, log summary or alert.</p></div></div>
+          <form id="analyzeForm">
+            <label>Incident title<input id="title" placeholder="e.g. Suspicious login detected" required></label>
+            <label>Source<select id="source"><option>Manual Input</option><option>Authentication Logs</option><option>Email Gateway</option><option>Endpoint Agent</option><option>Firewall</option></select></label>
+            <label>Event details<textarea id="details" placeholder="Example: 15 failed login attempts followed by a successful login from an unfamiliar IP..." required></textarea></label>
+            <button class="primary">Analyze with AI</button>
+          </form>
+        </div>
+        <div class="panel result" id="result">
+          <div class="empty">AI analysis will appear here.</div>
+        </div>
+      </section>
+
+      <section class="panel" id="response">
+        <div class="panel-head"><div><h2>Response Workflow</h2><p>Recommended containment lifecycle</p></div></div>
+        <div class="workflow">
+          <div><b>01</b><span>Detect</span><small>Collect alert</small></div><i>→</i>
+          <div><b>02</b><span>Analyze</span><small>Classify threat</small></div><i>→</i>
+          <div><b>03</b><span>Contain</span><small>Limit impact</small></div><i>→</i>
+          <div><b>04</b><span>Recover</span><small>Restore safely</small></div><i>→</i>
+          <div><b>05</b><span>Learn</span><small>Document findings</small></div>
+        </div>
+      </section>
+      <footer>Incident Response Agent • Local hackathon prototype • No real security action is executed</footer>
+    </main>
+  </div>
+<script src="app.js"></script>
+</body>
+</html>
