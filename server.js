@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 let incidents = [
   {
@@ -150,6 +152,6 @@ app.patch("/api/incidents/:id/status", (req, res) => {
   res.json(incident);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {   console.log(`Incident Response Agent running on port ${PORT}`); });, () => {
   console.log(`Incident Response Agent API running at http://localhost:${PORT}`);
 });
